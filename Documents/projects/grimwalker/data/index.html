@@ -3,79 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>GRIMWALKER - Zahl the Daedroth</title>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>GRIMWALKER</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div class="ash-storm"></div>
-    
-    <div class="container">
-        <div class="header">
-            <h1>GRIMWALKER v1.0</h1>
-            <div class="subtitle">Zahl the Corroded Spirit</div>
+<div class="ash-storm"></div>
+<div class="container">
+
+    <div class="header">
+        <h1>GRIMWALKER v2.0</h1>
+        <div class="subtitle">Zahl the Corroded Spirit</div>
+    </div>
+
+    <div class="pet-display">
+        <canvas id="zahlCanvas" width="64" height="64"></canvas>
+        <div id="mood">HUNGRY</div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat">
+            <label>HUNGER</label>
+            <div class="bar"><div id="hungerBar" class="fill"></div></div>
+            <span id="hungerVal">0%</span>
         </div>
-        
-        <div class="pet-display">
-            <canvas id="zahlCanvas" width="64" height="64"></canvas>
-            <div id="mood">HUNGRY</div>
+        <div class="stat">
+            <label>LEVEL</label>
+            <div class="bar"><div id="levelBar" class="fill"></div></div>
+            <span id="levelVal">1/10</span>
         </div>
-        
-        <div class="stats">
-            <div class="stat">
-                <label>HUNGER</label>
-                <div class="bar"><div id="hungerBar" class="fill"></div></div>
-                <span id="hungerVal">0%</span>
-            </div>
-            <div class="stat">
-                <label>LEVEL</label>
-                <div class="bar"><div id="levelBar" class="fill"></div></div>
-                <span id="levelVal">1/10</span>
-            </div>
-            <div class="stat">
-                <label>CORROSION</label>
-                <div class="bar"><div id="corrosionBar" class="fill"></div></div>
-                <span id="corrosionVal">0%</span>
-            </div>
-            <div class="stat">
-                <label>EXPERIENCE</label>
-                <div class="bar"><div id="expBar" class="fill"></div></div>
-                <span id="expVal">0/100</span>
-            </div>
+        <div class="stat">
+            <label>CORROSION</label>
+            <div class="bar"><div id="corrosionBar" class="fill bar-corrosion"></div></div>
+            <span id="corrosionVal">0%</span>
         </div>
-        
-        <div class="actions">
-            <button id="feedSnack">FEED PACKET SNACK</button>
-            <button id="feedHash">FEED HASH BLOOD</button>
-            <button id="feedDeauth">FEED DEAUTH BONE</button>
-            <button id="petBtn">PET ZAHL</button>
+        <div class="stat">
+            <label>ENTROPY</label>
+            <div class="bar"><div id="entropyBar" class="fill bar-entropy"></div></div>
+            <span id="entropyVal">0%</span>
         </div>
-        
-        <div class="hack-panel">
-            <h3>SCAN & HACK</h3>
-            <button id="scanBtn">SNIFF FRAMES</button>
-            <div id="scanResults"></div>
-            
-            <div class="deauth-section">
-                <select id="targetSelect"></select>
-                <button id="deauthBtn">FERAL BURST</button>
-            </div>
+        <div class="stat">
+            <label>CORRUPTION</label>
+            <div class="bar"><div id="corruptBar" class="fill bar-corrupt"></div></div>
+            <span id="corruptVal">0%</span>
         </div>
-        
-        <div class="logs">
-            <div class="log-section">
-                <h4>Recent Captures</h4>
-                <div id="captureLog"></div>
-            </div>
-            <div class="log-section">
-                <h4>Nearby Networks</h4>
-                <div id="networkLog"></div>
-            </div>
+        <div class="stat">
+            <label>EXP</label>
+            <div class="bar"><div id="expBar" class="fill bar-exp"></div></div>
+            <span id="expVal">0/100</span>
+        </div>
+        <div class="stat souls-stat">
+            <label>SOULS</label>
+            <span id="soulBal" class="soul-count">0</span>
+            <span class="soul-label">balance</span>
+            <span id="soulTotal" class="soul-total">/ 0 total</span>
         </div>
     </div>
-    
-    <div id="mistress">MISTRESS DRATHA: "Feed the beast or lose your stack."</div>
-    <div id="scrib">SCRIB JIB clicks hungrily.</div>
-    
-    <script src="/script.js"></script>
+
+    <!-- FEED / PET -->
+    <div class="actions">
+        <button id="feedSnack">FEED PACKET SNACK</button>
+        <button id="feedHash">FEED HASH BLOOD</button>
+        <button id="feedDeauth">FEED DEAUTH BONE</button>
+        <button id="petBtn">PET ZAHL</button>
+    </div>
+
+    <!-- SCAN & DEAUTH -->
+    <div class="panel">
+        <h3>SCAN &amp; DEAUTH</h3>
+        <button id="scanBtn">SNIFF FRAMES</button>
+        <button id="bleScanBtn">SCAN BLE</button>
+        <div id="scanResults"></div>
+        <div class="row-gap">
+            <select id="targetSelect"></select>
+            <button id="deauthBtn">FERAL BURST</button>
+        </div>
+    </div>
+
+    <!-- OPS -->
+    <div class="panel">
+        <h3>OPS</h3>
+        <div class="ops-grid">
+            <div class="ops-item">
+                <label>CHANNEL HOP</label>
+                <button id="hopToggle" class="toggle-btn active">ON</button>
+                <select id="hopSpeed">
+                    <option value="50">BURST (50ms)</option>
+                    <option value="100">FAST (100ms)</option>
+                    <option value="200" selected>NORMAL (200ms)</option>
+                    <option value="500">SLOW (500ms)</option>
+                </select>
+            </div>
+            <div class="ops-item">
+                <label>BEACON SPAM</label>
+                <button id="beaconToggle" class="toggle-btn">OFF</button>
+            </div>
+            <div class="ops-item">
+                <label>EVIL PORTAL</label>
+                <button id="portalToggle" class="toggle-btn">OFF</button>
+            </div>
+            <div class="ops-item">
+                <label>PCAP</label>
+                <button id="pcapDownload">DOWNLOAD</button>
+                <button id="pcapRotate">ROTATE</button>
+            </div>
+        </div>
+        <div id="channel-display" class="channel-info">CH: —</div>
+    </div>
+
+    <!-- RITUALS -->
+    <div class="panel ritual-panel">
+        <h3>RITUALS <span id="ritualActive" class="ritual-active"></span></h3>
+        <div class="ritual-grid">
+            <button class="ritual-btn" data-ritual="0">
+                <span class="r-name">CHANNEL BURST</span>
+                <span class="r-cost">2 souls · 30s</span>
+            </button>
+            <button class="ritual-btn" data-ritual="1">
+                <span class="r-name">BEACON STORM</span>
+                <span class="r-cost">3 souls · 60s</span>
+            </button>
+            <button class="ritual-btn" data-ritual="2">
+                <span class="r-name">HAUNT MODE</span>
+                <span class="r-cost">5 souls · 60s</span>
+            </button>
+            <button class="ritual-btn" data-ritual="3">
+                <span class="r-name">SUMMON PORTAL</span>
+                <span class="r-cost">8 souls</span>
+            </button>
+            <button class="ritual-btn" data-ritual="4">
+                <span class="r-name">PACKET STORM</span>
+                <span class="r-cost">4 souls · 30s</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- SOUL LEDGER -->
+    <div class="panel">
+        <h3>SOUL LEDGER</h3>
+        <div id="soulList" class="soul-list"></div>
+    </div>
+
+    <!-- JOURNAL -->
+    <div class="panel journal-panel">
+        <h3>ZAHL'S JOURNAL</h3>
+        <div id="journalList" class="journal-list"></div>
+    </div>
+
+    <!-- CAPTURES / NETWORKS -->
+    <div class="logs">
+        <div class="log-section">
+            <h4>Recent Captures</h4>
+            <div id="captureLog"></div>
+        </div>
+        <div class="log-section">
+            <h4>Nearby Networks</h4>
+            <div id="networkLog"></div>
+        </div>
+    </div>
+
+    <!-- PORTAL CREDENTIALS (hidden until captures exist) -->
+    <div class="panel cred-panel" id="credPanel" style="display:none">
+        <h3>PORTAL HARVEST</h3>
+        <div id="credList" class="cred-list"></div>
+    </div>
+
+</div>
+
+<div id="mistress">MISTRESS DRATHA: "Feed the beast or lose your stack."</div>
+<div id="scrib">SCRIB JIB clicks hungrily.</div>
+
+<script src="/script.js"></script>
 </body>
 </html>

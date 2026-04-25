@@ -5,8 +5,8 @@
 }
 
 body {
-    background: #000;
-    color: #0f0;
+    background: #060010;
+    color: #c0a0f0;
     font-family: 'Courier New', monospace;
     padding: 20px;
     position: relative;
@@ -14,21 +14,19 @@ body {
 }
 
 @keyframes ashStorm {
-    0% { background-position: 0 0; }
+    0%   { background-position: 0 0; }
     100% { background-position: 100px 100px; }
 }
 
 .ash-storm {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, #111 1px, transparent 1px);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: radial-gradient(circle, #1a0840 1px, transparent 1px);
     background-size: 20px 20px;
-    opacity: 0.3;
+    opacity: 0.25;
     pointer-events: none;
-    animation: ashStorm 20s linear infinite;
+    animation: ashStorm 25s linear infinite;
     z-index: 0;
 }
 
@@ -37,29 +35,29 @@ body {
     z-index: 1;
     max-width: 800px;
     margin: 0 auto;
-    background: rgba(0,0,0,0.85);
-    border: 2px solid #300;
+    background: rgba(6,0,16,0.92);
+    border: 2px solid #3a1560;
     padding: 20px;
-    box-shadow: 0 0 20px rgba(255,0,0,0.3);
+    box-shadow: 0 0 30px rgba(120,60,200,0.35);
 }
 
 .header {
     text-align: center;
-    border-bottom: 1px solid #600;
+    border-bottom: 1px solid #3a1560;
     margin-bottom: 20px;
     padding-bottom: 10px;
 }
 
 h1 {
     font-size: 28px;
-    color: #c00;
-    text-shadow: 2px 2px 0px #300;
+    color: #b080ff;
+    text-shadow: 2px 2px 0px #1a0840, 0 0 10px #7840c0;
     letter-spacing: 2px;
 }
 
 .subtitle {
     font-size: 12px;
-    color: #a66;
+    color: #7050a0;
 }
 
 .pet-display {
@@ -68,112 +66,348 @@ h1 {
 }
 
 #zahlCanvas {
-    background: #000811;
-    border: 3px solid #600;
+    background: #060010;
+    border: 3px solid #3a1560;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     width: 256px;
     height: 256px;
     display: block;
     margin: 0 auto;
+    box-shadow: 0 0 20px rgba(90,30,160,0.5);
 }
 
 #mood {
     margin-top: 10px;
     font-weight: bold;
-    color: #f00;
+    color: #9060d0;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.stats {
-    margin: 20px 0;
-}
+/* ---- STATS ---- */
+.stats { margin: 20px 0; }
 
 .stat {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
 .stat label {
     display: inline-block;
     width: 100px;
     font-weight: bold;
-    color: #a00;
+    color: #7050a0;
+    font-size: 12px;
 }
 
 .bar {
     display: inline-block;
     width: 200px;
-    height: 20px;
-    background: #200;
-    border: 1px solid #600;
-    margin: 0 10px;
+    height: 16px;
+    background: #0a0020;
+    border: 1px solid #2a1040;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .fill {
     height: 100%;
-    background: #c00;
+    background: #5a30a0;
     width: 0%;
-    transition: width 0.3s;
+    transition: width 0.4s ease;
 }
 
+.bar-corrosion { }
+.bar-corrosion + span,
+#corrosionBar   { background: #306a80; }
+
+.bar-entropy + span,
+#entropyBar     { background: #6020a0; }
+
+.bar-corrupt + span,
+#corruptBar     { background: #a01840; }
+
+.bar-exp + span,
+#expBar         { background: #2060a0; }
+
+.stat span {
+    font-size: 11px;
+    color: #5040a0;
+    min-width: 52px;
+}
+
+.souls-stat {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid #1a0840;
+    margin-top: 4px;
+}
+
+.soul-count {
+    font-size: 22px;
+    font-weight: bold;
+    color: #cc80ff;
+    text-shadow: 0 0 8px #7840c0;
+    min-width: auto;
+}
+
+.soul-label {
+    font-size: 11px;
+    color: #5040a0;
+}
+
+.soul-total {
+    font-size: 11px;
+    color: #3a1060;
+    min-width: auto;
+}
+
+/* ---- ACTIONS ---- */
 .actions {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
     margin: 20px 0;
 }
 
+/* ---- BUTTONS ---- */
 button {
-    background: #200;
-    color: #c00;
-    border: 1px solid #600;
+    background: #0a0020;
+    color: #9060d0;
+    border: 1px solid #3a1560;
     padding: 10px;
     font-family: 'Courier New', monospace;
+    font-size: 12px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 button:hover {
-    background: #400;
-    border-color: #c00;
-    color: #f00;
+    background: #1a0840;
+    border-color: #9060d0;
+    color: #e0b0ff;
+    box-shadow: 0 0 6px rgba(144,96,208,0.4);
 }
 
-.hack-panel {
-    margin: 20px 0;
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.toggle-btn {
+    background: #050010;
+    color: #3a1560;
+    border-color: #1a0840;
+    font-size: 11px;
+    padding: 6px 10px;
+}
+
+.toggle-btn.active {
+    background: #1a0840;
+    color: #cc80ff;
+    border-color: #7840c0;
+    box-shadow: 0 0 4px rgba(120,64,192,0.5);
+}
+
+/* ---- PANELS ---- */
+.panel {
+    margin: 15px 0;
     padding: 15px;
-    border: 1px dashed #600;
+    border: 1px dashed #2a1040;
+    background: rgba(10,0,32,0.5);
 }
 
-.hack-panel h3 {
-    color: #c00;
-    margin-bottom: 10px;
+.panel h3 {
+    color: #9060d0;
+    margin-bottom: 12px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #1a0840;
+    padding-bottom: 6px;
 }
 
+/* ---- SCAN PANEL ---- */
 #scanResults {
     margin: 10px 0;
-    max-height: 150px;
+    max-height: 120px;
     overflow-y: auto;
-    font-size: 12px;
+    font-size: 11px;
+    color: #6040a0;
 }
 
-.deauth-section {
-    margin-top: 15px;
+.row-gap {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
 }
 
 #targetSelect {
     flex: 1;
-    background: #010;
-    color: #0f0;
-    border: 1px solid #600;
+    background: #0a0020;
+    color: #9060d0;
+    border: 1px solid #2a1040;
     padding: 8px;
-    font-family: monospace;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
 }
 
+#targetSelect option {
+    background: #0a0020;
+    color: #9060d0;
+}
+
+/* ---- OPS GRID ---- */
+.ops-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.ops-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ops-item label {
+    font-size: 11px;
+    color: #5040a0;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.ops-item select {
+    background: #0a0020;
+    color: #6040a0;
+    border: 1px solid #1a0840;
+    padding: 4px;
+    font-family: monospace;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.channel-info {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #5040a0;
+    letter-spacing: 1px;
+}
+
+/* ---- RITUALS ---- */
+.ritual-panel .ritual-active {
+    font-size: 11px;
+    color: #cc80ff;
+    font-style: italic;
+    text-shadow: 0 0 6px #7840c0;
+}
+
+.ritual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
+}
+
+.ritual-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 10px 6px;
+    background: #080018;
+    border: 1px solid #2a1040;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.ritual-btn:hover {
+    background: #1a0840;
+    border-color: #7840c0;
+    box-shadow: 0 0 8px rgba(120,64,192,0.4);
+}
+
+.ritual-btn .r-name {
+    font-size: 11px;
+    font-weight: bold;
+    color: #9060d0;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.ritual-btn .r-cost {
+    font-size: 10px;
+    color: #5040a0;
+    text-align: center;
+}
+
+/* ---- SOUL LEDGER ---- */
+.soul-list {
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 11px;
+}
+
+.soul-list::-webkit-scrollbar { width: 4px; }
+.soul-list::-webkit-scrollbar-track { background: #060010; }
+.soul-list::-webkit-scrollbar-thumb { background: #2a1040; }
+
+.soul-entry {
+    display: flex;
+    gap: 8px;
+    padding: 3px 0;
+    border-bottom: 1px solid #0a0020;
+    align-items: baseline;
+}
+
+.soul-entry .se-type {
+    color: #3a1060;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.soul-entry .se-id {
+    color: #7050a0;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.soul-entry .se-label {
+    color: #4a2080;
+    font-size: 10px;
+    flex-shrink: 0;
+}
+
+.soul-entry .se-rssi {
+    color: #3a1560;
+    font-size: 10px;
+    flex-shrink: 0;
+}
+
+/* ---- JOURNAL ---- */
+.journal-list { }
+
+.journal-entry {
+    padding: 5px 0;
+    color: #6040a0;
+    border-bottom: 1px solid #0a0020;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* ---- CAPTURES / NETWORKS ---- */
 .logs {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -183,13 +417,15 @@ button:hover {
 }
 
 .log-section {
-    border-top: 1px solid #300;
+    border-top: 1px solid #1a0840;
     padding-top: 10px;
 }
 
 .log-section h4 {
-    color: #a66;
-    margin-bottom: 5px;
+    color: #5040a0;
+    margin-bottom: 6px;
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 
 #captureLog, #networkLog {
@@ -199,48 +435,79 @@ button:hover {
 
 .log-entry {
     padding: 2px 0;
-    border-bottom: 1px solid #200;
+    border-bottom: 1px solid #0a0020;
     font-family: monospace;
+    color: #5040a0;
 }
 
+/* ---- CREDENTIALS ---- */
+.cred-panel {
+    border-color: #600020;
+}
+
+.cred-panel h3 {
+    color: #c02060;
+}
+
+.cred-list { font-size: 12px; }
+
+.cred-entry {
+    padding: 6px 0;
+    border-bottom: 1px solid #200010;
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+}
+
+.cred-entry .ce-user {
+    color: #ff4080;
+    font-weight: bold;
+}
+
+.cred-entry .ce-pass {
+    color: #a03060;
+    flex: 1;
+}
+
+.cred-entry .ce-time {
+    color: #3a1040;
+    font-size: 10px;
+}
+
+/* ---- MISTRESS / SCRIB ---- */
 #mistress, #scrib {
     position: fixed;
     bottom: 10px;
     right: 10px;
-    background: #000;
-    border-left: 3px solid #c00;
+    background: #060010;
+    border-left: 3px solid #7840c0;
     padding: 5px 10px;
     font-size: 11px;
-    color: #a66;
+    color: #7050a0;
     z-index: 2;
-    opacity: 0.8;
+    opacity: 0.85;
+    max-width: 320px;
 }
 
 #scrib {
-    bottom: 40px;
-    right: 10px;
-    border-left-color: #060;
-    color: #6a6;
+    bottom: 42px;
+    border-left-color: #2a1040;
+    color: #4a2060;
 }
 
+/* ---- SCROLLBARS ---- */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #060010; }
+::-webkit-scrollbar-thumb { background: #2a1040; }
+
+/* ---- RESPONSIVE ---- */
 @media (max-width: 600px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .actions {
-        grid-template-columns: 1fr;
-    }
-    
-    .logs {
-        grid-template-columns: 1fr;
-    }
-    
-    .stat label {
-        width: 80px;
-    }
-    
-    .bar {
-        width: 150px;
-    }
+    .container { padding: 10px; }
+    .actions { grid-template-columns: 1fr; }
+    .logs { grid-template-columns: 1fr; }
+    .ops-grid { grid-template-columns: 1fr; }
+    .ritual-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat label { width: 80px; }
+    .bar { width: 130px; }
+    #mistress, #scrib { max-width: 220px; font-size: 10px; }
 }
