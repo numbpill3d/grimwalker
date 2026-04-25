@@ -100,11 +100,6 @@ void handleAPI(AsyncWebServerRequest* req) {
 }
 
 void initWebServer() {
-    if (!SPIFFS.begin(true)) {
-        Serial.println("SPIFFS mount failed");
-        return;
-    }
-
     // ---- static files ----
     server.serveStatic("/", SPIFFS, "/").setDefaultFile("index.html");
 

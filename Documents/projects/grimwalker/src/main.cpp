@@ -2,6 +2,7 @@
 #include <WiFi.h>
 #include <esp_wifi.h>
 #include <esp_sleep.h>
+#include <SPIFFS.h>
 #include "webserver.h"
 #include "packet_sniffer.h"
 #include "zahl_pet.h"
@@ -45,6 +46,11 @@ void setup() {
     Zahl.soulBalance = savedSoulBal;
     Zahl.soulsTotal  = savedSoulsAll;
     Zahl.lastFed    = millis();
+
+    // Mount SPIFFS before any subsystem touches it
+    if (!SPIFFS.begin(true)) {
+        Serial.println("SPIFFS mount failed");
+    }
 
     // WiFi AP+STA
     WiFi.mode(WIFI_AP_STA);
