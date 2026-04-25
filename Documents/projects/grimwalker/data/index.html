@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>GRIMWALKER - Zahl the Daedroth</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <div class="ash-storm"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>GRIMWALKER v1.0</h1>
+            <div class="subtitle">Zahl the Corroded Spirit</div>
+        </div>
+        
+        <div class="pet-display">
+            <canvas id="zahlCanvas" width="64" height="64"></canvas>
+            <div id="mood">HUNGRY</div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <label>HUNGER</label>
+                <div class="bar"><div id="hungerBar" class="fill"></div></div>
+                <span id="hungerVal">0%</span>
+            </div>
+            <div class="stat">
+                <label>LEVEL</label>
+                <div class="bar"><div id="levelBar" class="fill"></div></div>
+                <span id="levelVal">1/10</span>
+            </div>
+            <div class="stat">
+                <label>CORROSION</label>
+                <div class="bar"><div id="corrosionBar" class="fill"></div></div>
+                <span id="corrosionVal">0%</span>
+            </div>
+            <div class="stat">
+                <label>EXPERIENCE</label>
+                <div class="bar"><div id="expBar" class="fill"></div></div>
+                <span id="expVal">0/100</span>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button id="feedSnack">FEED PACKET SNACK</button>
+            <button id="feedHash">FEED HASH BLOOD</button>
+            <button id="feedDeauth">FEED DEAUTH BONE</button>
+            <button id="petBtn">PET ZAHL</button>
+        </div>
+        
+        <div class="hack-panel">
+            <h3>SCAN & HACK</h3>
+            <button id="scanBtn">SNIFF FRAMES</button>
+            <div id="scanResults"></div>
+            
+            <div class="deauth-section">
+                <select id="targetSelect"></select>
+                <button id="deauthBtn">FERAL BURST</button>
+            </div>
+        </div>
+        
+        <div class="logs">
+            <div class="log-section">
+                <h4>Recent Captures</h4>
+                <div id="captureLog"></div>
+            </div>
+            <div class="log-section">
+                <h4>Nearby Networks</h4>
+                <div id="networkLog"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="mistress">MISTRESS DRATHA: "Feed the beast or lose your stack."</div>
+    <div id="scrib">SCRIB JIB clicks hungrily.</div>
+    
+    <script src="/script.js"></script>
+</body>
+</html>
